@@ -1,0 +1,39 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class User {
+  + id: int
+  + username: str
+  + email: str
+  + phone: str
+  + password: str
+}
+
+class Transaction {
+  + id: int
+  + user_id: int
+  + amount: float
+  + category: str
+  + date: str
+  + description: str
+  + payment_method: str
+}
+
+class App {
+  + index()
+  + login()
+  + logout()
+  + register()
+  + transactions()
+  + add_transaction()
+  + delete_transaction(transaction_id)
+  + daily_spending_data()
+  + monthly_spending_data()
+  + statistics()
+}
+
+User "1" -- "many" Transaction : has >
+App --> User : manages
+App --> Transaction : processes
+
+@enduml

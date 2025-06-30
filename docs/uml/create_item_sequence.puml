@@ -1,0 +1,13 @@
+@startuml
+actor User
+participant Browser
+participant FlaskApp as App
+participant Database as DB
+
+User -> Browser : Input transaksi (amount, category, date, etc.)
+Browser -> App : POST /add_transaction
+App -> DB : INSERT INTO transactions (...)
+DB --> App : success
+App --> Browser : redirect to /transactions
+Browser --> User : Lihat transaksi terbaru
+@enduml
