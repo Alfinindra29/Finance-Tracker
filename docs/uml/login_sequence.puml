@@ -1,0 +1,13 @@
+@startuml
+actor User
+participant Browser
+participant FlaskApp as App
+participant Database as DB
+
+User -> Browser : Input username & password
+Browser -> App : POST /login
+App -> DB : SELECT * FROM users WHERE username=? AND password=?
+DB --> App : user data or none
+App --> Browser : redirect to / or show error
+Browser --> User : Home page or error message
+@enduml
